@@ -59,6 +59,10 @@ button {
     height: 20px;
 }
 
+#close-form:hover{
+    cursor: pointer;
+}
+
 .form {
     display: flex;
     flex-direction: column;
