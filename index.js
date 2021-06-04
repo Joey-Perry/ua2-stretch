@@ -2,10 +2,17 @@ const grab = (identifier) => document.querySelector(identifier);
 
 const emailList = [];
 const form = grab('.form');
+const main = grab('.hero');
 const nameInput = grab('#name');
 const emailInput = grab('#email');
 const formBtn = grab('#close-form');
 const formContainer = grab('.form-container');
+
+/* variables for cart functionality */
+let cartItems = 0;
+const cart = document.createElement('div');
+const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+
 
 const toggler = () => {
     form.classList.toggle('hide');
@@ -46,6 +53,22 @@ const validateForm = () => {
         displayThankYou();
     }
 }
+
+const addToCart = () => {
+    if (cartItems === 0){
+        cartItems = 1;
+        cart.setAttribute('class', 'cart-display');
+        cart.innerText = 'Your Cart: 1 item';
+        main.append(cart);
+    } else {
+        cartItems += 1;
+        cart.innerText = `Your Cart: ${cartItems} items`;
+    }
+}
+
+addToCartBtns.forEach(btn => {
+    btn.addEventListener('click', addToCart);
+})
 
 const changeBorder = (element) => {
     element.addEventListener('change', ()=>{
